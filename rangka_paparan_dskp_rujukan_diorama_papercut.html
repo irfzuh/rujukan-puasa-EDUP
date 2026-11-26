@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSKP & Rujukan — Konsep Puasa Ramadan (Tahun 4)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        jawi: ['"Amiri"', 'serif']
+                    },
+                    colors: {
+                        diorama: {
+                            sun: '#F2EBC9',
+                            cream: '#FBF9F1',
+                            mint: '#95CEB3',
+                            sage: '#5FA88A',
+                            mid: '#357960',
+                            dark: '#1D5240',
+                            deepest: '#0E3327'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background-color: #0E3327;
+            color: #0E3327;
+            overflow-x: hidden;
+        }
+        /* Kesan bayang-bayang lapisan potongan kertas (Papercut Diorama) */
+        .papercut-frame {
+            background: rgba(251, 249, 241, 0.96);
+            box-shadow:
+                0 16px 35px -8px rgba(14, 51, 39, 0.45),
+                0 4px 12px rgba(14, 51, 39, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(149, 206, 179, 0.65);
+        }
+        .papercut-layer {
+            box-shadow: 0 10px 25px rgba(14, 51, 39, 0.35);
+        }
+        .layer-reveal {
+            animation: revealLayer 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes revealLayer {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-diorama-mint selection:text-diorama-deepest">
+
+    <!-- ==================== LATAR BELAKANG DIORAMA HUTAN PAPERCUT ==================== -->
+    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden" aria-hidden="true">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+            <defs>
+                <radialGradient id="sunGlow" cx="50%" cy="28%" r="55%">
+                    <stop offset="0%" stop-color="#F7F1D5" />
+                    <stop offset="55%" stop-color="#CBE5CD" />
+                    <stop offset="100%" stop-color="#76B89A" />
+                </radialGradient>
+                <filter id="paperShadow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#082118" flood-opacity="0.38" />
+                </filter>
+            </defs>
+
+            <!-- Langit Cahaya Hutan -->
+            <rect width="1440" height="900" fill="url(#sunGlow)" />
+
+            <!-- Lapisan Bukit Jauh 1 -->
+            <path d="M0,430 Q260,340 520,410 T1040,380 T1440,420 L1440,900 L0,900 Z" fill="#A6D6BE" filter="url(#paperShadow)" />
+            <!-- Lapisan Bukit Tengah 2 -->
+            <path d="M0,510 Q320,440 660,500 T1220,460 T1440,490 L1440,900 L0,900 Z" fill="#6BB092" filter="url(#paperShadow)" />
+            <!-- Lapisan Bukit Hutan 3 -->
+            <path d="M0,610 Q280,550 610,600 T1180,570 T1440,610 L1440,900 L0,900 Z" fill="#3B8267" filter="url(#paperShadow)" />
+
+            <!-- Batang Pokok Kiri & Kanan (Siluet Papercut) -->
+            <g fill="#184737" filter="url(#paperShadow)">
+                <path d="M95,0 L135,0 L142,360 L195,250 L212,260 L145,400 L150,900 L85,900 Z" />
+                <path d="M250,0 L282,0 L288,310 L330,220 L345,230 L290,345 L295,900 L242,900 Z" />
+                <path d="M1155,0 L1190,0 L1185,330 L1130,235 L1115,245 L1182,365 L1178,900 L1225,900 Z" />
+                <path d="M1310,0 L1355,0 L1345,390 L1285,270 L1268,282 L1342,430 L1338,900 L1390,900 Z" />
+            </g>
+
+            <!-- Dedaun Kanopi Atas -->
+            <path d="M0,0 L1440,0 L1440,120 Q1320,175 1190,115 Q1050,180 910,110 Q720,165 540,105 Q380,175 230,115 Q110,170 0,120 Z" fill="#235C48" filter="url(#paperShadow)" />
+            <path d="M0,0 L1440,0 L1440,75 Q1280,125 1120,70 Q940,130 760,68 Q560,125 370,72 Q180,125 0,72 Z" fill="#133D2E" filter="url(#paperShadow)" />
+
+            <!-- Semak Lapisan Hadapan Bawah -->
+            <path d="M0,760 Q190,700 380,755 Q590,710 790,765 Q1020,715 1240,760 Q1350,735 1440,755 L1440,900 L0,900 Z" fill="#1A4D3B" filter="url(#paperShadow)" />
+            <path d="M0,825 Q240,785 490,830 Q760,790 1030,835 Q1260,795 1440,825 L1440,900 L0,900 Z" fill="#0E3327" filter="url(#paperShadow)" />
+        </svg>
+    </div>
+
+    <!-- ==================== HEADER UTAMA & NAVIGASI TAB ==================== -->
+    <header class="max-w-6xl mx-auto px-4 pt-5 pb-3">
+        <div class="papercut-frame rounded-3xl px-5 py-4 flex flex-wrap items-center justify-between gap-4">
+            <!-- Tajuk Aplikasi -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-diorama-dark text-diorama-sun flex items-center justify-center font-extrabold text-lg shadow-md">
+                    4.3
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-extrabold text-diorama-deepest tracking-tight">
+                        Pendidikan Islam Tahun 4
+                    </h1>
+                    <p class="text-xs text-diorama-mid font-medium">
+                        Paparan DSKP & Rujukan Buku Teks (Konsep Puasa Ramadan)
+                    </p>
+                </div>
+            </div>
+
+            <!-- Butang Penukar Bahagian (DSKP / Rujukan) & Kawalan SFX -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <nav class="bg-diorama-mint/30 p-1.5 rounded-2xl flex items-center gap-1.5 border border-diorama-mint/50">
+                    <button id="tabDskp" onclick="switchTab('dskp')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer bg-diorama-dark text-white shadow">
+                        📋 DSKP
+                    </button>
+                    <button id="tabRujukan" onclick="switchTab('rujukan')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer text-diorama-deepest hover:bg-white/60">
+                        📖 Rujukan
+                    </button>
+                </nav>
+
+                <button id="sfxToggleBtn" onclick="toggleSFX()" title="Hidup/Matikan Bunyi SFX" class="w-10 h-10 rounded-2xl bg-diorama-sun hover:bg-diorama-mint/40 text-diorama-deepest font-bold flex items-center justify-center border border-diorama-mint/50 cursor-pointer transition">
+                    🔊
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== KANDUNGAN UTAMA ==================== -->
+    <main class="max-w-6xl mx-auto px-4 pb-12">
+
+        <!-- ==================== BAHAGIAN 1: RANGKA DISPLAY DSKP ==================== -->
+        <section id="sectionDskp" class="layer-reveal">
+            <div class="papercut-frame rounded-3xl p-4 sm:p-6 space-y-5">
+                <!-- Bar Atas Bingkai DSKP -->
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-diorama-mint/40">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-extrabold text-diorama-deepest">Paparan Dokumen DSKP</h2>
+                        <p class="text-xs text-diorama-mid">Klik pada paparan dokumen di bawah untuk zum penuh.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openLightbox('dskpFrameContent', 'Paparan Dokumen DSKP (M/S 46–47)')" class="bg-diorama-sun hover:bg-diorama-mint/40 text-diorama-deepest text-xs font-bold px-3.5 py-2 rounded-xl transition cursor-pointer">
+                            🔍 Zum Penuh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ruang Paparan Gambar DSKP (Muka Surat 46-47/68) -->
+                <div id="dskpFrameContent" onclick="openLightbox('dskpFrameContent', 'Paparan Dokumen DSKP (M/S 46–47)')" class="w-full rounded-2xl overflow-hidden bg-white border border-diorama-mint/40 shadow-inner cursor-zoom-in group">
+                    <!-- Paparan Visual Dokumen DSKP (KSSR Pendidikan Islam Tahun 4 - M/S 46-47/68) -->
+                    <div class="w-full bg-[#e5e5e5] select-none transition duration-300 group-hover:scale-[1.005]">
+                        <!-- Bar Atas AnyFlip -->
+                        <div class="bg-[#3b3b3b] text-white px-3 py-1.5 flex items-center justify-between text-[11px]">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold tracking-tight">anyflip</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-300">⇤ ←</span>
+                                <span class="bg-white text-black px-2 py-0.5 rounded font-mono text-[10px]">46-47/68</span>
+                                <span class="text-gray-300">→ ⇥</span>
+                            </div>
+                            <span class="text-gray-300 text-[10px] hidden sm:inline">KSSR PENDIDIKAN ISLAM TAHUN 4</span>
+                        </div>
+                        <!-- Halaman Dokumen DSKP -->
+                        <div class="bg-white m-2 sm:m-4 p-3 sm:p-6 shadow-md border border-gray-300 overflow-x-auto" dir="rtl">
+                            <div class="text-left text-[10px] sm:text-xs font-bold text-gray-700 mb-2" dir="ltr">KSSR PENDIDIKAN ISLAM TAHUN 4</div>
+                            <table class="w-full border-collapse border-2 border-black text-right text-black" style="font-family: 'Amiri', serif;">
+                                <thead>
+                                    <tr class="bg-[#008fd5] text-black font-bold text-sm sm:text-lg">
+                                        <th class="border-2 border-black p-2 w-[22%]">ستندرد كاندوغن</th>
+                                        <th class="border-2 border-black p-2 w-[38%]">ستندرد قمبلاجرن</th>
+                                        <th class="border-2 border-black p-2 w-[40%]" colspan="2">ستندرد فريستاسي</th>
+                                    </tr>
+                                    <tr class="bg-[#008fd5] text-black font-bold text-xs sm:text-base">
+                                        <th class="border-2 border-black p-1"></th>
+                                        <th class="border-2 border-black p-1"></th>
+                                        <th class="border-2 border-black p-1 w-[8%]">تاهف</th>
+                                        <th class="border-2 border-black p-1 w-[32%]">تفسيرن</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-xs sm:text-base leading-relaxed">
+                                    <tr>
+                                        <td rowspan="6" class="border-2 border-black p-3 align-top font-semibold">
+                                            <div class="flex justify-between gap-2">
+                                                <span dir="ltr" class="font-sans font-bold text-sm">4.3</span>
+                                                <span>مروموس كونسيف فواسا رمضان دان مغحياتيث سجارا برادب دان استقامة.</span>
+                                            </div>
+                                        </td>
+                                        <td rowspan="6" class="border-2 border-black p-3 align-top space-y-2">
+                                            <p class="font-bold">موريد دافت:</p>
+                                            <p><span dir="ltr" class="font-sans text-xs sm:text-sm font-semibold">4.3.1</span> مياتاكن مقصود فواسا رمضان.</p>
+                                            <p><span dir="ltr" class="font-sans text-xs sm:text-sm font-semibold">4.3.2</span> منرغكن حكوم فواسا رمضان برداسركن دليل نقلي سرتا ترجمهنث.</p>
+                                            <p><span dir="ltr" class="font-sans text-xs sm:text-sm font-semibold">4.3.3</span> منجلسكن شرط٢ واجب، شرط٢ صح دان روكون فواسا رمضان.</p>
+                                            <p><span dir="ltr" class="font-sans text-xs sm:text-sm font-semibold">4.3.4</span> مغهورايكن سنة٢ فواسا رمضان.</p>
+                                            <p><span dir="ltr" class="font-sans text-xs sm:text-sm font-semibold">4.3.5</span> مغاناليسيس فركارا٢ يغ ممبطلكن فواسا رمضان.</p>
+                                            <p><span dir="ltr" class="font-sans text-xs sm:text-sm font-semibold">4.3.6</span> مروموس كفنتيغن فواسا رمضان ملقساناكن عباده فواسا رمضان سجارا برادب دان استقامة.</p>
+                                        </td>
+                                        <td class="border-2 border-black p-2 text-center font-sans font-bold">1</td>
+                                        <td class="border-2 border-black p-2">مياتاكن كونسيف فواسا رمضان.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-2 border-black p-2 text-center font-sans font-bold">2</td>
+                                        <td class="border-2 border-black p-2">منجلسكن كونسيف فواسا رمضان.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-2 border-black p-2 text-center font-sans font-bold">3</td>
+                                        <td class="border-2 border-black p-2">مغفليكاسي فواسا رمضان دالم كهيدوفن.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-2 border-black p-2 text-center font-sans font-bold">4</td>
+                                        <td class="border-2 border-black p-2">مغاناليسيس كفنتيغن فواسا رمضان سرتا مغعملكنث.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-2 border-black p-2 text-center font-sans font-bold">5</td>
+                                        <td class="border-2 border-black p-2">منيلاي قربواتن يغ بوليه ممبطلكن فواسا رمضان دان مغهيندرين سجارا برادب.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-2 border-black p-2 text-center font-sans font-bold">6</td>
+                                        <td class="border-2 border-black p-2">مروموس كفنتيغن فواسا رمضان سرتا مغعملكنث سجارا برادب دان استقامة.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BAHAGIAN 2: RANGKA DISPLAY RUJUKAN (BUKU TEKS) ==================== -->
+        <section id="sectionRujukan" class="hidden layer-reveal">
+            <div class="papercut-frame rounded-3xl p-4 sm:p-6 space-y-6">
+                <!-- Bar Atas Bingkai Rujukan -->
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-diorama-mint/40">
+                    <div>
+                        <h2 class="text-base sm:text-lg font-extrabold text-diorama-deepest">Paparan Rujukan Buku Teks</h2>
+                        <p class="text-xs text-diorama-mid">Klik mana-mana halaman buku teks di bawah untuk zum penuh.</p>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Grid 2 Ruang Paparan Buku Teks -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    <!-- Bingkai Buku Teks 1 (M/S 138-139) -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between px-1">
+                            <span class="text-xs font-bold text-diorama-dark">Halaman Rujukan 1 (M/S 138–139)</span>
+                            <button onclick="openLightbox('rujukanFrame1', 'Rujukan Buku Teks - Muka Surat 138–139')" class="text-xs font-bold text-diorama-mid hover:text-diorama-deepest cursor-pointer">
+                                🔍 Zum
+                            </button>
+                        </div>
+                        <div id="rujukanFrame1" onclick="openLightbox('rujukanFrame1', 'Rujukan Buku Teks - Muka Surat 138–139')" class="w-full rounded-2xl overflow-hidden bg-[#d8d8d8] border border-diorama-mint/40 shadow-inner cursor-zoom-in group">
+                            <!-- Paparan Visual Buku Teks M/S 138-139 -->
+                            <div class="w-full select-none transition duration-300 group-hover:scale-[1.01]" style="font-family: 'Amiri', serif;">
+                                <div class="bg-[#e60067] text-white px-3 py-1 flex items-center justify-between text-[10px] font-sans">
+                                    <span class="font-bold">anyflip</span>
+                                    <span class="bg-white text-black px-2 py-0.5 rounded font-mono">138-139/195</span>
+                                    <span>عبادة</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1 p-2 bg-[#c7c7c7]" dir="rtl">
+                                    <!-- Muka Surat 139 (Kanan) -->
+                                    <div class="bg-[#fcfbf7] p-2.5 rounded shadow border border-gray-300 space-y-2 text-[11px] sm:text-xs text-right">
+                                        <div class="flex justify-between items-center">
+                                            <span class="bg-[#2e7d32] text-white px-2 py-0.5 rounded font-bold text-[10px]">عبادة</span>
+                                            <span class="text-gray-400 font-mono text-[9px]">139</span>
+                                        </div>
+                                        <div class="bg-[#e8f5e9] border border-[#66bb6a] rounded-xl p-2">
+                                            <div class="bg-[#c5e1a5] text-[#1b5e20] font-bold px-2 py-0.5 rounded-full inline-block mb-1">شرط واجب فواسا</div>
+                                            <ol class="list-decimal list-inside space-y-0.5 text-gray-800">
+                                                <li><strong>إسلام</strong> - تيدق واجب باكي اورغ كافير.</li>
+                                                <li><strong>بالغ</strong> - كانق٢ تيدق دواجبكن برفواسا.</li>
+                                                <li><strong>برعقل</strong> - اورغ كيلا تيدق دواجبكن برفواسا.</li>
+                                                <li><strong>ممفو</strong> - تيدق عذور دان تيدق ساكيت.</li>
+                                            </ol>
+                                        </div>
+                                        <div class="bg-[#f1f8e9] border border-[#81c784] rounded-xl p-2">
+                                            <div class="bg-[#aed581] text-[#1b5e20] font-bold px-2 py-0.5 rounded-full inline-block mb-1">شرط صح فواسا</div>
+                                            <ol class="list-decimal list-inside space-y-0.5 text-gray-800">
+                                                <li><strong>إسلام</strong> - اورغ يغ بوكن إسلام تيدق صح فواسا.</li>
+                                                <li><strong>سوجي درفد حيض، نفاس دان ولادة</strong> - خصوص باكي وانيتا.</li>
+                                                <li><strong>برعقل (مميز)</strong> - تيدق صح فواسا اورغ كيلا، فيغسن دان بلوم مميز.</li>
+                                                <li><strong>برتفتن دغن وقتوث</strong> - تيدق برفواسا فد هاري٢ يغ دحرامكن برفواسا.</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <!-- Muka Surat 138 (Kiri) -->
+                                    <div class="bg-[#fcfbf7] p-2.5 rounded shadow border border-gray-300 space-y-2 text-[11px] sm:text-xs text-right">
+                                        <div class="flex justify-between items-center">
+                                            <span class="bg-[#2e7d32] text-white px-2 py-0.5 rounded font-bold text-[10px]">عبادة</span>
+                                            <span class="font-bold text-[#1a237e]">باج دان اولغ.</span>
+                                        </div>
+                                        <div class="bg-[#e3f2fd] border border-[#64b5f6] rounded-xl p-2">
+                                            <div class="bg-[#90caf9] text-[#0d47a1] font-bold px-2 py-0.5 rounded-full inline-block mb-1">فغرتين فواسا</div>
+                                            <p class="text-gray-800 leading-snug">فواسا اياله مناهن ديري درفد فركارا٢ يغ ممبطلكن فواسا برمولا درفد تربيت فجر هيغك تربنم ماتاهاري دسرتاءي دغن نية.</p>
+                                        </div>
+                                        <div class="bg-[#fffde7] border border-[#dce775] rounded-xl p-2">
+                                            <div class="bg-[#d4e157] text-[#33691e] font-bold px-2 py-0.5 rounded-full inline-block mb-1">دليل فواسا</div>
+                                            <p class="font-bold text-center text-[#1b5e20] my-1">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ (البقرة: 183)</p>
+                                            <p class="text-gray-700 leading-snug"><strong>مقصودث:</strong> واهاي اورغ٢ يغ برايمان، كامو دواجبكن برفواسا سباكايمان دواجبكن اتس اورغ٢ يغ دهولو دري كامو، سفايا كامو برتقوى.</p>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-1.5">
+                                            <div class="bg-[#f3e5f5] border border-[#ba68c8] rounded-lg p-1.5">
+                                                <span class="font-bold text-[#4a148c] block">حكوم فواسا</span>
+                                                <span class="text-gray-700 text-[10px]">واجب باكي سموا اومت إسلام يغ ممفو فد بولن رمضان.</span>
+                                            </div>
+                                            <div class="bg-[#e8f5e9] border border-[#81c784] rounded-lg p-1.5">
+                                                <span class="font-bold text-[#1b5e20] block">روكون فواسا</span>
+                                                <span class="text-gray-700 text-[10px]">1. نية برفواسا.<br>2. تيدق ملاكوكن فركارا يغ ممبطلكن فواسا.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bingkai Buku Teks 2 (M/S 140-141) -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between px-1">
+                            <span class="text-xs font-bold text-diorama-dark">Halaman Rujukan 2 (M/S 140–141)</span>
+                            <button onclick="openLightbox('rujukanFrame2', 'Rujukan Buku Teks - Muka Surat 140–141')" class="text-xs font-bold text-diorama-mid hover:text-diorama-deepest cursor-pointer">
+                                🔍 Zum
+                            </button>
+                        </div>
+                        <div id="rujukanFrame2" onclick="openLightbox('rujukanFrame2', 'Rujukan Buku Teks - Muka Surat 140–141')" class="w-full rounded-2xl overflow-hidden bg-[#d8d8d8] border border-diorama-mint/40 shadow-inner cursor-zoom-in group">
+                            <!-- Paparan Visual Buku Teks M/S 140-141 -->
+                            <div class="w-full select-none transition duration-300 group-hover:scale-[1.01]" style="font-family: 'Amiri', serif;">
+                                <div class="bg-[#e60067] text-white px-3 py-1 flex items-center justify-between text-[10px] font-sans">
+                                    <span class="font-bold">anyflip</span>
+                                    <span class="bg-white text-black px-2 py-0.5 rounded font-mono">140-141/195</span>
+                                    <span>عبادة</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1 p-2 bg-[#c7c7c7]" dir="rtl">
+                                    <!-- Muka Surat 141 (Kanan) -->
+                                    <div class="bg-[#fcfbf7] p-2.5 rounded shadow border border-gray-300 space-y-2 text-[11px] sm:text-xs text-right">
+                                        <div class="flex justify-between items-center">
+                                            <span class="bg-[#2e7d32] text-white px-2 py-0.5 rounded font-bold text-[10px]">عبادة</span>
+                                            <span class="font-bold text-[#1a237e]">باج دان فهمي.</span>
+                                        </div>
+                                        <div class="text-center my-1">
+                                            <span class="bg-[#cddc39] text-[#33691e] font-bold px-3 py-1 rounded-full inline-block shadow-sm">فركارا يغ ممبطلكن فواسا</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-1.5 text-center">
+                                            <div class="border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">حيض، نفاس دان ولادة.</div>
+                                            <div class="border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">فيغسن دان مابوق سفنجغ هاري، كيلا والاو سكجف.</div>
+                                            <div class="border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">مرتد.</div>
+                                            <div class="border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">مونته دغن سغاج.</div>
+                                            <div class="border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">برجماع فد سياغ هاري.</div>
+                                            <div class="border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">مغلواركن اءير مني دغن سغاج.</div>
+                                            <div class="col-span-2 border-2 border-[#e91e63] bg-white rounded-xl p-1.5 font-semibold text-gray-800">مماسوقكن سسواتو ملالوءي روغك تربوك سام اد ماكن، مينوم دان سباكاين.</div>
+                                        </div>
+                                    </div>
+                                    <!-- Muka Surat 140 (Kiri) -->
+                                    <div class="bg-[#fcfbf7] p-2.5 rounded shadow border border-gray-300 space-y-2 text-[11px] sm:text-xs text-right">
+                                        <div class="flex justify-between items-center">
+                                            <span class="bg-[#2e7d32] text-white px-2 py-0.5 rounded font-bold text-[10px]">عبادة</span>
+                                            <span class="font-bold text-[#1a237e]">باج دان عملكن.</span>
+                                        </div>
+                                        <div class="text-center">
+                                            <span class="bg-[#d7ccc8] text-[#3e2723] font-bold px-3 py-0.5 rounded-full inline-block">سنة٢ فواسا</span>
+                                        </div>
+                                        <div class="bg-[#fff9c4] border-2 border-[#f06292] rounded-xl p-2">
+                                            <ul class="list-disc list-inside space-y-0.5 text-gray-800 font-medium">
+                                                <li>برسحور.</li>
+                                                <li>مليواتكن سحور.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-[#fff9c4] border-2 border-[#f06292] rounded-xl p-2">
+                                            <ul class="list-disc list-inside space-y-0.5 text-gray-800 font-medium">
+                                                <li>ممفرباثق عملن سنة سفرتي برتداروس، برصدقه دان براعتكاف.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-[#fff9c4] border-2 border-[#f06292] rounded-xl p-2">
+                                            <ul class="list-disc list-inside space-y-0.5 text-gray-800 font-medium">
+                                                <li>ميكراكن بربوك.</li>
+                                                <li>بردعاء سبلوم بربوك.</li>
+                                                <li>بربوك دغن تمر.</li>
+                                                <li>ممبريكن ماكنن كفد اورغ لاءين اونتوق بربوك فواسا.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== MODAL ZUM GAMBAR ==================== -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-diorama-deepest/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6" onclick="closeLightbox(event)">
+        <div class="bg-white rounded-3xl max-w-6xl w-full max-h-[92vh] flex flex-col p-4 sm:p-5 papercut-layer" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-gray-200">
+                <h3 id="lightboxTitle" class="font-extrabold text-sm sm:text-base text-diorama-deepest">Paparan Zum</h3>
+                <button onclick="closeLightbox()" class="w-8 h-8 rounded-full bg-diorama-sun hover:bg-diorama-mint/50 text-diorama-deepest font-bold flex items-center justify-center cursor-pointer transition">
+                    ✕
+                </button>
+            </div>
+            <div id="lightboxContent" class="flex-1 overflow-auto bg-diorama-cream rounded-2xl p-2 sm:p-4">
+                <!-- Kandungan zum akan disalin ke sini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SKRIP LOGIK RANGKA & SFX ==================== -->
+    <script>
+        let sfxEnabled = true;
+
+        // Enjin Kesan Bunyi (Tone.js)
+        async function playSFX(type) {
+            if (!sfxEnabled || typeof Tone === 'undefined') return;
+            try {
+                if (Tone.context.state !== 'running') {
+                    await Tone.start();
+                }
+                const now = Tone.now();
+
+                if (type === 'tab') {
+                    const synth = new Tone.Synth({
+                        oscillator: { type: 'sine' },
+                        envelope: { attack: 0.005, decay: 0.12, sustain: 0, release: 0.1 }
+                    }).toDestination();
+                    synth.volume.value = -10;
+                    synth.triggerAttackRelease('E5', '16n', now);
+                    synth.triggerAttackRelease('A5', '16n', now + 0.06);
+                } else if (type === 'paper') {
+                    const noise = new Tone.NoiseSynth({
+                        noise: { type: 'pink' },
+                        envelope: { attack: 0.01, decay: 0.14, sustain: 0, release: 0.05 }
+                    }).toDestination();
+                    noise.volume.value = -16;
+                    noise.triggerAttackRelease('16n', now);
+                } else if (type === 'click') {
+                    const synth = new Tone.MembraneSynth().toDestination();
+                    synth.volume.value = -14;
+                    synth.triggerAttackRelease('C4', '32n', now);
+                }
+            } catch (e) {
+                // Abaikan jika audio disekat pelayar
+            }
+        }
+
+        function toggleSFX() {
+            sfxEnabled = !sfxEnabled;
+            const btn = document.getElementById('sfxToggleBtn');
+            btn.textContent = sfxEnabled ? '🔊' : '🔇';
+            if (sfxEnabled) playSFX('click');
+        }
+
+        // Penukaran Tab Antara DSKP & Rujukan
+        function switchTab(tab) {
+            playSFX('tab');
+            const secDskp = document.getElementById('sectionDskp');
+            const secRujukan = document.getElementById('sectionRujukan');
+            const btnDskp = document.getElementById('tabDskp');
+            const btnRujukan = document.getElementById('tabRujukan');
+
+            if (tab === 'dskp') {
+                secDskp.classList.remove('hidden');
+                secRujukan.classList.add('hidden');
+                btnDskp.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer bg-diorama-dark text-white shadow';
+                btnRujukan.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer text-diorama-deepest hover:bg-white/60';
+            } else {
+                secRujukan.classList.remove('hidden');
+                secDskp.classList.add('hidden');
+                btnRujukan.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer bg-diorama-dark text-white shadow';
+                btnDskp.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition cursor-pointer text-diorama-deepest hover:bg-white/60';
+            }
+        }
+
+        // Kawalan Modal Zum Penuh
+        function openLightbox(containerId, titleText) {
+            playSFX('paper');
+            const sourceEl = document.getElementById(containerId);
+            const targetBox = document.getElementById('lightboxContent');
+            document.getElementById('lightboxTitle').textContent = titleText;
+            targetBox.innerHTML = sourceEl.innerHTML;
+            const clonedImg = targetBox.querySelector('img');
+            if (clonedImg) {
+                clonedImg.classList.remove('max-h-[65vh]', 'max-h-[75vh]');
+                clonedImg.classList.add('max-h-[78vh]');
+            }
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox(event) {
+            if (!event || event.target.id === 'lightboxModal') {
+                playSFX('click');
+                document.getElementById('lightboxModal').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
